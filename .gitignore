@@ -1,0 +1,154 @@
+# ============================================================================
+# DEPENDENCIES
+# ============================================================================
+
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ============================================================================
+# ENVIRONMENT VARIABLES
+# ============================================================================
+
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# Firebase configuration (keep actual keys private)
+firebase-config.js
+!js/firebase-config.js
+
+# ============================================================================
+# IDE & EDITOR FILES
+# ============================================================================
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+.idea_modules/
+*.iml
+*.iws
+*.ipr
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+.vim/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================================================================
+# BUILD & DISTRIBUTION
+# ============================================================================
+
+dist/
+build/
+*.bundle.js
+*.bundle.css
+.cache/
+.parcel-cache/
+
+# ============================================================================
+# OS & TEMPORARY FILES
+# ============================================================================
+
+*.log
+*.logs
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+*.swp
+*.swo
+
+# ============================================================================
+# TESTING
+# ============================================================================
+
+coverage/
+.nyc_output/
+test-results/
+*.lcov
+.mocha_output
+
+# ============================================================================
+# DOCUMENTATION
+# ============================================================================
+
+docs/build/
+site/
+
+# ============================================================================
+# PRODUCTION BACKUPS
+# ============================================================================
+
+*.sql
+*.db
+*.sqlite
+backup/
+backups/
+
+# ============================================================================
+# PERSONAL FILES
+# ============================================================================
+
+notes.txt
+personal/
+secrets/
+credentials/
+api_keys.json
+
+# ============================================================================
+# DEPLOYMENT & CI/CD
+# ============================================================================
+
+# GitHub Actions
+.github/workflows/secrets.yml
+
+# Heroku
+Procfile.local
+
+# Vercel
+.vercel/
+
+# Netlify
+.netlify/
+
+# ============================================================================
+# MISC
+# ============================================================================
+
+.editorconfig
+.prettierignore
+.eslintignore
+.stylelintignore
+*.orig
+*.rej

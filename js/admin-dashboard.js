@@ -1,6 +1,6 @@
 /**
  * Admin Dashboard Module
- * Manage projects CRUD operations
+ * Complete project CRUD operations with file uploads
  */
 
 let adminProjects = [];
@@ -22,6 +22,8 @@ async function initializeAdminDashboard() {
         setupDeleteModal();
         setupFileUploads();
         setupDashboardStats();
+        setupLogoutButton();
+        populateAdminName();
         
         console.log('✅ Admin dashboard initialized');
     } catch (error) {
@@ -170,7 +172,7 @@ function updateDashboardStats() {
 }
 
 /**
- * Setup dashboard stats
+ * Setup dashboard stats and buttons
  */
 function setupDashboardStats() {
     const addProjectBtn = document.getElementById('add-project-btn');
@@ -197,8 +199,8 @@ function filterAdminProjects() {
     const searchInput = document.getElementById('search-projects');
     const categoryFilter = document.getElementById('filter-category');
 
-    const searchQuery = searchInput.value.toLowerCase().trim();
-    const category = categoryFilter.value;
+    const searchQuery = searchInput?.value.toLowerCase().trim() || '';
+    const category = categoryFilter?.value || '';
 
     let filtered = adminProjects;
 
@@ -229,58 +231,60 @@ function filterAdminProjects() {
 
     // Show filtered results
     const paginatedFiltered = filtered.slice(0, projectsPerPage);
-    tableBody.innerHTML = paginatedFiltered.map(project => `
-        <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-            <td class="px-6 py-4 font-semibold text-gray-300">
-                <div class="flex items-center gap-3">
-                    <img src="${project.imageUrl}" alt="${project.title}" class="w-10 h-10 rounded object-cover">
-                    <span>${truncate(project.title, 20)}</span>
-                </div>
-            </td>
-            <td class="px-6 py-4 text-gray-400">
-                <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background: ${getCategoryColor(project.category)}20; color: ${getCategoryColor(project.category)};">
-                    ${capitalize(project.category)}
-                </span>
-            </td>
-            <td class="px-6 py-4 text-gray-400 text-sm">
-                ${formatDate(project.createdAt)}
-            </td>
-            <td class="px-6 py-4 text-gray-400">
-                <span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300">
-                    ${project.views || 0}
-                </span>
-            </td>
-            <td class="px-6 py-4">
-                <span class="px-2 py-1 rounded-full text-xs font-semibold ${project.featured ? 'bg-yellow-500/20 text-yellow-300' : 'bg-gray-800 text-gray-400'}">
-                    ${project.featured ? '⭐ Featured' : 'Regular'}
-                </span>
-            </td>
-            <td class="px-6 py-4 text-right space-x-2">
-                <button class="px-3 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors text-sm edit-project-btn" data-project-id="${project.id}">
-                    <i class="fas fa-edit mr-1"></i>Edit
-                </button>
-                <button class="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-sm delete-project-btn" data-project-id="${project.id}">
-                    <i class="fas fa-trash mr-1"></i>Delete
-                </button>
-            </td>
-        </tr>
-    `).join('');
+    if (tableBody) {
+        tableBody.innerHTML = paginatedFiltered.map(project => `
+            <tr class="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
+                <td class="px-6 py-4 font-semibold text-gray-300">
+                    <div class="flex items-center gap-3">
+                        <img src="${project.imageUrl}" alt="${project.title}" class="w-10 h-10 rounded object-cover">
+                        <span>${truncate(project.title, 20)}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4 text-gray-400">
+                    <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background: ${getCategoryColor(project.category)}20; color: ${getCategoryColor(project.category)};">
+                        ${capitalize(project.category)}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-gray-400 text-sm">
+                    ${formatDate(project.createdAt)}
+                </td>
+                <td class="px-6 py-4 text-gray-400">
+                    <span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300">
+                        ${project.views || 0}
+                    </span>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-2 py-1 rounded-full text-xs font-semibold ${project.featured ? 'bg-yellow-500/20 text-yellow-300' : 'bg-gray-800 text-gray-400'}">
+                        ${project.featured ? '⭐ Featured' : 'Regular'}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-right space-x-2">
+                    <button class="px-3 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors text-sm edit-project-btn" data-project-id="${project.id}">
+                        <i class="fas fa-edit mr-1"></i>Edit
+                    </button>
+                    <button class="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-sm delete-project-btn" data-project-id="${project.id}">
+                        <i class="fas fa-trash mr-1"></i>Delete
+                    </button>
+                </td>
+            </tr>
+        `).join('');
 
-    // Re-attach event listeners
-    document.querySelectorAll('.edit-project-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const projectId = btn.getAttribute('data-project-id');
-            openEditProjectModal(projectId);
+        // Re-attach event listeners
+        document.querySelectorAll('.edit-project-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const projectId = btn.getAttribute('data-project-id');
+                openEditProjectModal(projectId);
+            });
         });
-    });
 
-    document.querySelectorAll('.delete-project-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const projectId = btn.getAttribute('data-project-id');
-            const project = adminProjects.find(p => p.id === projectId);
-            openDeleteModal(projectId, project.title);
+        document.querySelectorAll('.delete-project-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const projectId = btn.getAttribute('data-project-id');
+                const project = adminProjects.find(p => p.id === projectId);
+                openDeleteModal(projectId, project.title);
+            });
         });
-    });
+    }
 }
 
 /**
@@ -314,7 +318,7 @@ function setupProjectModal() {
     }
 
     // Title character counter
-    const titleInput = form.querySelector('input[name="title"]');
+    const titleInput = form?.querySelector('input[name="title"]');
     if (titleInput) {
         titleInput.addEventListener('input', () => {
             const count = document.getElementById('title-count');
@@ -499,6 +503,406 @@ async function handleProjectFormSubmit(form) {
     } finally {
         const submitBtn = form.querySelector('button[type="submit"]');
         setButtonLoading(submitBtn, false);
+    }
+}
+
+// ============================================================================
+// FILE UPLOAD HANDLING
+// ============================================================================
+
+/**
+ * Setup file upload handlers
+ */
+function setupFileUploads() {
+    setupImageUpload();
+    setupFileUpload();
+}
+
+/**
+ * Setup image upload drag and drop
+ */
+function setupImageUpload() {
+    const imageDropZone = document.getElementById('image-drop-zone');
+    const imageInput = document.getElementById('image-input');
+
+    if (!imageDropZone) return;
+
+    // Click to upload
+    imageDropZone.addEventListener('click', () => imageInput.click());
+
+    // Drag and drop
+    imageDropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        imageDropZone.classList.add('border-blue-500', 'bg-blue-500/10');
+    });
+
+    imageDropZone.addEventListener('dragleave', () => {
+        imageDropZone.classList.remove('border-blue-500', 'bg-blue-500/10');
+    });
+
+    imageDropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        imageDropZone.classList.remove('border-blue-500', 'bg-blue-500/10');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleImageSelect(files[0]);
+        }
+    });
+
+    // File input change
+    imageInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleImageSelect(e.target.files[0]);
+        }
+    });
+
+    // Remove button
+    const removeImageBtn = document.getElementById('remove-image');
+    if (removeImageBtn) {
+        removeImageBtn.addEventListener('click', () => {
+            selectedImage = null;
+            imageInput.value = '';
+            resetImagePreview();
+        });
+    }
+}
+
+/**
+ * Handle image selection
+ */
+function handleImageSelect(file) {
+    // Validate
+    if (!file.type.startsWith('image/')) {
+        showToast('Please select an image file', 'error');
+        return;
+    }
+
+    if (file.size > 5242880) { // 5MB
+        showToast('Image must be less than 5MB', 'error');
+        return;
+    }
+
+    selectedImage = file;
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const preview = document.getElementById('image-preview');
+        const placeholder = document.getElementById('image-placeholder');
+        const img = document.getElementById('preview-img');
+
+        img.src = e.target.result;
+        preview.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+}
+
+/**
+ * Reset image preview
+ */
+function resetImagePreview() {
+    const preview = document.getElementById('image-preview');
+    const placeholder = document.getElementById('image-placeholder');
+
+    preview.classList.add('hidden');
+    placeholder.classList.remove('hidden');
+}
+
+/**
+ * Setup file upload drag and drop
+ */
+function setupFileUpload() {
+    const fileDropZone = document.getElementById('file-drop-zone');
+    const fileInput = document.getElementById('file-input');
+
+    if (!fileDropZone) return;
+
+    // Click to upload
+    fileDropZone.addEventListener('click', () => fileInput.click());
+
+    // Drag and drop
+    fileDropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileDropZone.classList.add('border-blue-500', 'bg-blue-500/10');
+    });
+
+    fileDropZone.addEventListener('dragleave', () => {
+        fileDropZone.classList.remove('border-blue-500', 'bg-blue-500/10');
+    });
+
+    fileDropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileDropZone.classList.remove('border-blue-500', 'bg-blue-500/10');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFileSelect(files[0]);
+        }
+    });
+
+    // File input change
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleFileSelect(e.target.files[0]);
+        }
+    });
+
+    // Remove button
+    const removeFileBtn = document.getElementById('remove-file');
+    if (removeFileBtn) {
+        removeFileBtn.addEventListener('click', () => {
+            selectedFile = null;
+            fileInput.value = '';
+            resetFilePreview();
+        });
+    }
+}
+
+/**
+ * Handle file selection
+ */
+function handleFileSelect(file) {
+    // Validate
+    const validTypes = ['application/pdf', 'application/zip', 'application/x-rar-compressed', 'application/x-7z-compressed'];
+    
+    if (!validTypes.includes(file.type)) {
+        showToast('Only PDF and ZIP files are allowed', 'error');
+        return;
+    }
+
+    if (file.size > 52428800) { // 50MB
+        showToast('File must be less than 50MB', 'error');
+        return;
+    }
+
+    selectedFile = file;
+
+    // Show preview
+    const preview = document.getElementById('file-preview');
+    const placeholder = document.getElementById('file-placeholder');
+    const fileName = document.getElementById('file-name');
+
+    fileName.textContent = file.name;
+    preview.classList.remove('hidden');
+    placeholder.classList.add('hidden');
+}
+
+/**
+ * Reset file preview
+ */
+function resetFilePreview() {
+    const preview = document.getElementById('file-preview');
+    const placeholder = document.getElementById('file-placeholder');
+
+    preview.classList.add('hidden');
+    placeholder.classList.remove('hidden');
+}
+
+/**
+ * Reset file inputs
+ */
+function resetFileInputs() {
+    resetImagePreview();
+    resetFilePreview();
+    
+    const imageInput = document.getElementById('image-input');
+    const fileInput = document.getElementById('file-input');
+
+    if (imageInput) imageInput.value = '';
+    if (fileInput) fileInput.value = '';
+}
+
+/**
+ * Upload file to Firebase Storage
+ */
+async function uploadFile(file, folder) {
+    try {
+        if (!storage) {
+            throw new Error('Firebase Storage not initialized');
+        }
+
+        const fileName = `${generateId()}-${file.name}`;
+        const storageRef = storage.ref(`${folder}/${fileName}`);
+
+        // Show uploading toast
+        showToast(`Uploading ${file.name}...`, 'info');
+
+        // Upload file
+        const snapshot = await storageRef.put(file);
+
+        // Get download URL
+        const url = await snapshot.ref.getDownloadURL();
+        console.log(`✅ File uploaded: ${url}`);
+
+        return url;
+    } catch (error) {
+        console.error('File upload error:', error);
+        showToast('Failed to upload file', 'error');
+        throw error;
+    }
+}
+
+// ============================================================================
+// DELETE OPERATIONS
+// ============================================================================
+
+/**
+ * Delete project
+ */
+async function deleteProject(projectId) {
+    try {
+        if (!db || !storage) {
+            throw new Error('Firebase not initialized');
+        }
+
+        const project = adminProjects.find(p => p.id === projectId);
+        if (!project) return;
+
+        showToast('Deleting project...', 'info');
+
+        // Delete image from storage
+        if (project.imageUrl) {
+            try {
+                const imageRef = storage.refFromURL(project.imageUrl);
+                await imageRef.delete();
+            } catch (err) {
+                console.warn('Could not delete image:', err);
+            }
+        }
+
+        // Delete file from storage
+        if (project.fileUrl) {
+            try {
+                const fileRef = storage.refFromURL(project.fileUrl);
+                await fileRef.delete();
+            } catch (err) {
+                console.warn('Could not delete file:', err);
+            }
+        }
+
+        // Delete from Firestore
+        await db.collection('projects').doc(projectId).delete();
+
+        console.log('✅ Project deleted');
+        showToast('Project deleted successfully!', 'success');
+
+        // Reload projects
+        await loadAdminProjects();
+        closeDeleteModal();
+
+    } catch (error) {
+        console.error('Error deleting project:', error);
+        showToast('Failed to delete project', 'error');
+    }
+}
+
+/**
+ * Setup delete modal
+ */
+function setupDeleteModal() {
+    const modal = document.getElementById('delete-modal');
+    const confirmBtn = document.getElementById('confirm-delete');
+    const cancelBtn = document.getElementById('cancel-delete');
+
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', async () => {
+            if (currentEditingProjectId) {
+                await deleteProject(currentEditingProjectId);
+                currentEditingProjectId = null;
+            }
+        });
+    }
+
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', closeDeleteModal);
+    }
+
+    // Close on backdrop click
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeDeleteModal();
+            }
+        });
+    }
+}
+
+/**
+ * Open delete confirmation modal
+ */
+function openDeleteModal(projectId, projectTitle) {
+    currentEditingProjectId = projectId;
+    const modal = document.getElementById('delete-modal');
+    const projectName = document.getElementById('delete-project-name');
+
+    if (projectName) projectName.textContent = projectTitle;
+    if (modal) modal.classList.remove('hidden');
+}
+
+/**
+ * Close delete modal
+ */
+function closeDeleteModal() {
+    const modal = document.getElementById('delete-modal');
+    if (modal) modal.classList.add('hidden');
+    currentEditingProjectId = null;
+}
+
+// ============================================================================
+// PAGINATION & UTILITIES
+// ============================================================================
+
+/**
+ * Update pagination controls
+ */
+function updateAdminPagination(totalProjects) {
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    const totalPages = Math.ceil(totalProjects / projectsPerPage);
+
+    if (prevBtn) {
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayAdminProjects(currentPage);
+            }
+        };
+    }
+
+    if (nextBtn) {
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.onclick = () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayAdminProjects(currentPage);
+            }
+        };
+    }
+}
+
+/**
+ * Populate admin name
+ */
+function populateAdminName() {
+    const adminNameEl = document.getElementById('admin-name');
+    if (!adminNameEl) return;
+
+    const adminUser = getStorageItem('adminUser');
+    if (adminUser) {
+        adminNameEl.textContent = `${adminUser.displayName} (${adminUser.email})`;
+    }
+}
+
+/**
+ * Setup logout button
+ */
+function setupLogoutButton() {
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
     }
 }
 

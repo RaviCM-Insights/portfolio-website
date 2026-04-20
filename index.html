@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium personal portfolio showcasing elite projects and expertise">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:title" content="Ravi Chandra - Senior Full Stack Developer">
+    <meta property="og:description" content="Elite developer portfolio with premium projects">
+    <meta property="og:type" content="website">
+    
+    <title>Ravi Chandra - Premium Portfolio</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark bg-black text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        RC
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="hover:text-blue-400 transition-colors duration-300">About</a>
+                    <a href="#projects" class="hover:text-blue-400 transition-colors duration-300">Projects</a>
+                    <a href="#contact" class="hover:text-blue-400 transition-colors duration-300">Contact</a>
+                    <a href="admin.html" class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300">Admin</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#about" class="block px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">About</a>
+                <a href="#projects" class="block px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">Projects</a>
+                <a href="#contact" class="block px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">Contact</a>
+                <a href="admin.html" class="block px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 -z-10 overflow-hidden">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+                <div class="absolute top-40 right-10 w-72 h-72 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+                <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+            </div>
+
+            <!-- Content -->
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
+                    Ravi Chandra
+                </h1>
+
+                <p class="text-xl sm:text-2xl text-gray-300 mb-8">
+                    <span id="typing-text" class="text-blue-400"></span>
+                </p>
+
+                <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+                    Building premium digital experiences with cutting-edge technology. Full-stack developer, AI enthusiast, and UI/UX designer crafting solutions for tomorrow.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#projects" class="px-8 py-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 font-semibold">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="px-8 py-4 rounded-lg border-2 border-blue-400 hover:bg-blue-400/10 transition-all duration-300 font-semibold">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="mt-16 animate-bounce">
+                    <i class="fas fa-chevron-down text-2xl text-blue-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-blue-950/10 to-black">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center" data-aos="fade-up">About Me</h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Bio -->
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        I'm a senior full-stack developer with 7+ years of experience building scalable applications and engaging user experiences. Specializing in modern web technologies, cloud infrastructure, and AI-powered solutions.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        My passion lies in transforming complex problems into elegant, user-centric solutions. I've worked with Fortune 500 companies and innovative startups, consistently delivering high-impact projects.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/50">Full Stack</span>
+                        <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/50">AI/ML</span>
+                        <span class="px-4 py-2 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/50">Cloud</span>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div data-aos="fade-left" data-aos-duration="1000" class="space-y-6">
+                    <!-- Skill 1 -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">React & JavaScript</span>
+                            <span class="text-blue-400">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-500 to-cyan-500 h-full rounded-full" style="width: 95%; transition: width 1s ease-out;" data-skill-width="95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">Node.js & Backend</span>
+                            <span class="text-purple-400">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full" style="width: 0%; transition: width 1s ease-out;" data-skill-width="90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">UI/UX Design</span>
+                            <span class="text-pink-400">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-pink-500 to-red-500 h-full rounded-full" style="width: 0%; transition: width 1s ease-out;" data-skill-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold">Python & AI/ML</span>
+                            <span class="text-cyan-400">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full" style="width: 0%; transition: width 1s ease-out;" data-skill-width="88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up">Featured Projects</h2>
+            <p class="text-gray-400 text-center mb-12" data-aos="fade-up">Showcasing my finest work across web, AI, and data science</p>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="filter-btn active px-6 py-2 rounded-full border-2 border-blue-500 bg-blue-500/20 text-blue-400" data-filter="all">
+                    All
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-600 text-gray-400 hover:border-blue-500" data-filter="web">
+                    Web Dev
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-600 text-gray-400 hover:border-blue-500" data-filter="ai">
+                    AI/ML
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-600 text-gray-400 hover:border-blue-500" data-filter="data">
+                    Data Science
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid md:grid-cols-3 gap-6">
+                <!-- Projects will be loaded here by projects.js -->
+                <div class="col-span-full text-center py-12">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 animate-spin">
+                        <i class="fas fa-spinner text-blue-400"></i>
+                    </div>
+                    <p class="text-gray-400 mt-4">Loading projects...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black via-purple-950/10 to-black">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center" data-aos="fade-up">Get In Touch</h2>
+            <p class="text-gray-400 text-center mb-12" data-aos="fade-up">Have a project in mind? Let's create something amazing together</p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Name</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="Your name">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="your@email.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Subject</label>
+                            <input type="text" name="subject" required class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="Project inquiry">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Message</label>
+                            <textarea name="message" rows="5" required class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all resize-none" placeholder="Tell me about your project..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 font-semibold">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Social Links -->
+                <div data-aos="fade-left" data-aos-duration="1000" class="flex flex-col justify-center">
+                    <div class="space-y-6">
+                        <div class="p-6 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/80 transition-all">
+                            <i class="fas fa-envelope text-2xl text-blue-400 mb-3"></i>
+                            <h3 class="font-semibold mb-2">Email</h3>
+                            <a href="mailto:ravi@example.com" class="text-gray-400 hover:text-blue-400 transition-colors">ravi@example.com</a>
+                        </div>
+
+                        <div class="p-6 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/80 transition-all">
+                            <i class="fas fa-phone text-2xl text-purple-400 mb-3"></i>
+                            <h3 class="font-semibold mb-2">Phone</h3>
+                            <a href="tel:+1234567890" class="text-gray-400 hover:text-purple-400 transition-colors">+1 (234) 567-890</a>
+                        </div>
+
+                        <div class="p-6 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/80 transition-all">
+                            <i class="fas fa-map-marker-alt text-2xl text-pink-400 mb-3"></i>
+                            <h3 class="font-semibold mb-2">Location</h3>
+                            <p class="text-gray-400">San Francisco, CA</p>
+                        </div>
+
+                        <div class="flex gap-4 pt-4">
+                            <a href="#" class="p-4 rounded-lg bg-gray-900 hover:bg-blue-500/20 hover:text-blue-400 transition-all" title="GitHub">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="#" class="p-4 rounded-lg bg-gray-900 hover:bg-blue-500/20 hover:text-blue-400 transition-all" title="LinkedIn">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="p-4 rounded-lg bg-gray-900 hover:bg-blue-500/20 hover:text-blue-400 transition-all" title="Twitter">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="p-4 rounded-lg bg-gray-900 hover:bg-blue-500/20 hover:text-blue-400 transition-all" title="Email">
+                                <i class="fas fa-paper-plane text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-gray-900 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-800" data-aos="zoom-in">
+            <button class="sticky top-4 right-4 float-right p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors z-10">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <div id="modal-content" class="p-8">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="hidden fixed bottom-8 right-8 p-4 rounded-full bg-blue-500 hover:bg-blue-600 transition-all shadow-lg hover:shadow-blue-500/50 z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-black/50">
+        <div class="max-w-7xl mx-auto text-center text-gray-400">
+            <p>&copy; <span id="year">2024</span> Ravi Chandra. All rights reserved.</p>
+            <p class="text-sm mt-2">Designed & built with ❤️ using modern web technologies</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
